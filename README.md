@@ -1,25 +1,82 @@
-# Development
+# 漢字 Quiz
 
-Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
+A minimal, fast kanji flashcard app built with [Dioxus](https://dioxuslabs.com/) and Rust. Load your own CSV deck, pick how many kanji to drill, and type the keyword from memory — no clicking, no fuss.
 
+---
+
+## Screenshots
+
+### Landing
+
+![Landing screen — enter how many kanji to quiz](_screenshots/landing.png)
+
+### Quiz
+
+![Quiz screen — kanji is displayed, type the English keyword](_screenshots/quiz.png)
+
+---
+
+## Features
+
+- Reads any CSV deck with `kanji` and `keyword` columns
+- Shuffles and slices to exactly the number you choose
+- Auto-advances on correct input — no submit button
+- Case-insensitive matching, whitespace-trimmed
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Rust](https://rustup.rs/) (stable)
+- [Dioxus CLI](https://dioxuslabs.com/learn/0.6/getting_started/)
+
+```bash
+cargo install dioxus-cli
 ```
-project/
-├─ assets/ # Any assets that are used by the app should be placed here
-├─ src/
-│  ├─ main.rs # main.rs is the entry point to your application and currently contains all components for the app
-├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
-```
 
-### Serving Your App
-
-Run the following command in the root of your project to start developing with the default platform:
+### Run
 
 ```bash
 dx serve
 ```
 
-To run for a different platform, use the `--platform platform` flag. E.g.
-```bash
-dx serve --platform desktop
+Then open [http://localhost:8080](http://localhost:8080).
+
+---
+
+## CSV Format
+
+Place your deck at `data.csv` in the project root. Expected columns:
+
+```csv
+kanji,keyword
+日,sun
+山,mountain
+火,fire
 ```
 
+Any extra columns are ignored.
+
+---
+
+## Project Structure
+
+```
+├── src/
+│   ├── main.rs        # App, Landing, Hero components
+│   └── kanji.rs       # CSV parsing and Kanji struct
+├── assets/
+│   ├── main.css       # Styles
+│   └── favicon.ico
+└── data.csv           # Your kanji deck
+```
+
+---
+
+## Built With
+
+- [Dioxus](https://dioxuslabs.com/) — Rust UI framework
+- [rand](https://docs.rs/rand) — Deck shuffling
+- [Shippori Mincho](https://fonts.google.com/specimen/Shippori+Mincho) / [Zen Kaku Gothic New](https://fonts.google.com/specimen/Zen+Kaku+Gothic+New) — Typography
