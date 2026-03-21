@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap');
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+    --ink:      #0d0d0d;
+    --paper:    #f5f0e8;
+    --red:      #c0392b;
+    --red-dim:  #8b1a12;
+    --gold:     #c9922a;
+    --muted:    #7a7060;
+    --glow:     rgba(192, 57, 43, 0.35);
+}
+
+/* ── Reset / Base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    height: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+/* Grain overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Dioxus root ────────────────────────────────────────── */
+#main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background:
+            radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(192,57,43,0.08) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 80% at 80% 100%,  rgba(201,146,42,0.05) 0%, transparent 60%),
+            var(--ink);
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Landing ────────────────────────────────────────────── */
+#main > h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+}
+
+#main > h2::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: var(--red);
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+}
+
+/* ── Inputs ─────────────────────────────────────────────── */
+input {
+    background: #1a1a1a;
+    border: 1.5px solid #333;
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.4rem;
+    border-radius: 6px;
+    outline: none;
+    width: 18rem;
+    max-width: 85vw;
+    text-align: center;
+    caret-color: var(--red);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px var(--glow);
+}
+
+/* ── Button ─────────────────────────────────────────────── */
+button {
+    position: relative;
+    overflow: hidden;
+    background: var(--red);
+    color: var(--paper);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    padding: 0.85rem 3.2rem;
+    cursor: pointer;
+    margin-top: 1.4rem;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+    transition: background 0.2s, transform 0.12s;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+button:hover  { background: #d44638; transform: translateY(-2px); }
+button:active { background: var(--red-dim); transform: translateY(0); }
+
+/* ── Hero / Quiz ────────────────────────────────────────── */
+#question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Giant kanji ────────────────────────────────────────── */
+#kanji {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(8rem, 22vw, 15rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--paper);
+    text-align: center;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+    position: relative;
+}
+
+#kanji::after {
+    content: '';
+    display: block;
+    width: 55%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    opacity: 0.75;
+}
+
+/* ── Answer input ───────────────────────────────────────── */
+#keyword {
+    font-size: 1.8rem;
+    max-width: 85vw;
+    letter-spacing: 0.12em;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #444;
+    border-radius: 0;
+    padding: 0.4rem 0.2rem 0.6rem;
+    width: 22rem;
+}
+
+#keyword:focus {
+    border-bottom-color: var(--red);
+    box-shadow: 0 3px 0 0 var(--glow);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
