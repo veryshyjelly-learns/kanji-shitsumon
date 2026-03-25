@@ -183,3 +183,47 @@ button:active { background: var(--red-dim); transform: translateY(0); }
 ::-webkit-scrollbar       { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+#hint {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: #1e1e1e;
+    border: 1.5px solid #333;
+    color: var(--muted);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+#hint:hover {
+    border-color: var(--red);
+    color: var(--paper);
+}
+
+#hint-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 0.6rem);
+    right: 0;
+    background: #1e1e1e;
+    border: 1.5px solid var(--red);
+    color: var(--paper);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+#hint:hover #hint-tooltip {
+    display: block;
+}

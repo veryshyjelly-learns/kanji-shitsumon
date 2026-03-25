@@ -3,10 +3,18 @@
 [web.app]
 
 # HTML title tag content
-title = "kanji_shitsumon"
+title = "Kanji Shitsumon"
+
+[application.icon]
+path = "assets/icon.icns"
 
 # include `assets` in web platform
 [web.resource]
+
+[bundle]
+publisher = "biswas"
+identifier = "com.biswas.kanji_shitsumon"
+icon = ["assets/icon.icns"]
 
 # Additional CSS style files
 style = []
